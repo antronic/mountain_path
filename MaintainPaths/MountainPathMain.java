@@ -18,10 +18,13 @@ public class MountainPathMain{
     int max = map.findMaxValue();
     System.out.println("Max value in map: " + max);
     
-    for (int i = 0; i < map.getRows(); i++){
+    
+    int i = 0;
+    while(i < map.getRows()){
       
       
       System.out.println(map.grid[i][0]);
+      i++;
     }
     
     int minRow = map.indexOfMinInCol(0);
