@@ -190,22 +190,22 @@ public class DrawingPanel implements ActionListener, MouseMotionListener, Window
             
             if (shutdownThread == null ) {
                 shutdownThread = new Thread(new Runnable() {
-                    // Runnable implementation; used for shutdown thread.
-                    public void run() {
-                        try {
-                            while (true) {
-                                // maybe shut down the program, if no more DrawingPanels are onscreen
-                                // and main has finished executing
-                                if ((instances == 0 || shouldSave()) && !mainIsActive()) {
-                                    try {
-                                        System.exit(0);
-                                    } catch (SecurityException sex) {}
-                                }
-
-                                Thread.sleep(250);
-                            }
-                        } catch (Exception e) {}
-                    }
+                  
+                  public void run() {
+                    try {
+                      while (true) {
+                        // maybe shut down the program, if no more DrawingPanels are onscreen
+                        // and main has finished executing
+                        if ((instances == 0 || shouldSave()) && !mainIsActive()) {
+                          try {
+                            System.exit(0);
+                          } catch (SecurityException sex) {}
+                        }
+                        
+                        Thread.sleep(250);
+                      }
+                    } catch (Exception e) {}
+                  }
                 });
                 shutdownThread.setPriority(Thread.MIN_PRIORITY);
                 shutdownThread.start();
@@ -357,15 +357,14 @@ public class DrawingPanel implements ActionListener, MouseMotionListener, Window
 
     // take the current contents of the panel and write them to a file
     public void save(String filename) throws IOException {
-        BufferedImage image2 = getImage();
-        
+        BufferedImage img2 = getImage();
 
         int lastDot = filename.lastIndexOf(".");
-        String extension = filename.substring(lastDot + 1);
+        String ext = filename.substring(lastDot + 1);
         
         // write file
         // TODO: doesn't save background color I don't think
-        ImageIO.write(image2, extension, new File(filename));
+        ImageIO.write(img2, ext, new File(filename));
     }
     
     
@@ -520,21 +519,21 @@ public class DrawingPanel implements ActionListener, MouseMotionListener, Window
     
     private BufferedImage getImage() {
         // create second image so we get the background color
-        BufferedImage image2;
+        BufferedImage img2;
         if (isAnimated()) {
           
-            image2 = new BufferedImage( width, height, BufferedImage.TYPE_BYTE_INDEXED);
+            img2 = new BufferedImage( width, height, BufferedImage.TYPE_BYTE_INDEXED);
             
         } else {
           
-            image2 = new BufferedImage( width, height, img.getType());
+            img2 = new BufferedImage( width, height, img.getType());
         }
-        Graphics g = image2.getGraphics();
+        Graphics g = img2.getGraphics();
         if (DEBUG) System.out.println("getImage setting background to " + backgroundColor);
         g.setColor(backgroundColor);
         g.fillRect(0, 0, width, height);
         g.drawImage(img, 0, 0, panel);
-        return image2;
+        return img2;
     }
     
     

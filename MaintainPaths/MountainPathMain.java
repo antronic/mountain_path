@@ -27,7 +27,7 @@ public class MountainPathMain{
       i++;
     }
     
-    int minRow = map.indexOfMinInCol(0);
+    int minRow = map.indexOfMinCol(0);
     System.out.println("Row with lowest value in col 0: " + minRow);
     
     //Step 3 - draw the map
@@ -35,8 +35,8 @@ public class MountainPathMain{
     
     //Step 4 - draw a greedy path
     g.setColor(Color.RED); //can set the color of the 'brush' before drawing, then method doesn't need to worry about it
-    int totalChange = map.drawLowestElevPath(g, minRow); //use minRow from Step 2 as starting point
-    System.out.println("Lowest-Elevation-Change Path starting at row " + minRow + " gives total change of: " + totalChange);
+    int sumChange = map.LowestElevPath(g, minRow); //use minRow from Step 2 as starting point
+    System.out.println("Lowest-Elevation-Change Path starting at row " + minRow + " gives total change of: " + sumChange);
     
     //Step 5 - draw the best path
     g.setColor(Color.RED);
@@ -44,8 +44,8 @@ public class MountainPathMain{
     
     //map.drawMap(g); //use this to get rid of all red lines
     g.setColor(Color.GREEN); //set brush to green for drawing best path
-    totalChange = map.drawLowestElevPath(g, bestRow);
-    System.out.println("The Lowest-Elevation-Change Path starts at row: " + bestRow + " and gives a total change of: " + totalChange);
+    sumChange = map.LowestElevPath(g, bestRow);
+    System.out.println("The Lowest-Elevation-Change Path starts at row: " + bestRow + " and gives a total change of: " + sumChange);
     
   }
   

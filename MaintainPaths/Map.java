@@ -86,7 +86,7 @@ public class Map{
    * @param col the column of the grid to check
    * @return the index of the row with the lowest value in the given col for the grid
    */
-  public int indexOfMinInCol(int cols){
+  public int indexOfMinCol(int cols){
     
     int min = grid[0][cols];
     int minRow = 0;
@@ -137,7 +137,7 @@ public class Map{
    * Choose a forward step out of 3 possible forward locations, using greedy method described in assignment.
    * @return the total change in elevation traveled from West-to-East
    */
-  public int drawLowestElevPath(Graphics g, int rows){
+  public int LowestElevPath(Graphics g, int rows){
     
     int max = findMaxValue();
     int totalChange = 0;
@@ -210,13 +210,13 @@ public class Map{
    */
   public int indexOfLowestElevPath(Graphics g){
     
-    int least = drawLowestElevPath(g, 0);
+    int least = LowestElevPath(g, 0);
     int index = 0;
     int i = 1;
     
     while(i < grid.length){
       
-      int change = drawLowestElevPath(g, i);
+      int change = LowestElevPath(g, i);
       
       if (change < least){
         least = change;
